@@ -14,7 +14,9 @@ Mini E-Wallet menggunakan bahasa pemrograman PHP dan framework Laravel
 
 ## Instalation
 
-- Langkah pertama pull semua data dari github, setelah selesai buka cmd pada directory tersebut dan jalankan *`composer install`*
+- Langkah pertama pull semua data dari github 
+- buka cmd pada directory tersebut
+- jalankan *`composer install`*
 ```bash
 #untuk install vendor
 composer install
@@ -27,7 +29,7 @@ npm run dev
 ```
 - berikutnya buat database baru dengan nama `ewallet`
 - kemudian copy file `.env.example` paste dengan nama `.env` sesuaikan config database pada file `.env`
-- jalankan `key:generate` 
+- jalankan `key:generate` pada cmd
 ```bash
 php artisan key:generate
 ```

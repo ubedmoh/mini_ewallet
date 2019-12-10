@@ -26,4 +26,7 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/transfer', 'TransferController@index')->name('transfer');
     Route::post('/transfer/send', 'TransferController@transfer')->name('transfer.send');
+
+    Route::get('/mutation', 'MutasiController@index')->name('mutasi');
+    Route::get('/getmutation', 'MutasiController@getmutasi')->name('mutasi.get');
 });

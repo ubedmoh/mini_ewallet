@@ -28,9 +28,15 @@ class UserController extends Controller
         $bank_balance = BalanceBank::first();
         $user_balance = UserBalance::with('user')->where('user_id', $user_id)->first();
 
-        if($bank_balance < $isi)
+        // mengurangi pengirim
+        if($isi <= 0)
         {
-            return redirect()->back()->with('danger', 'Uang bank habis');
+            return redirect()->back()->with('danger', 'Isikan data dengan benar');
+        }
+
+        if($bank_balance->balance < $isi)
+        {
+            return redirect()->back()->with('danger', 'Uang tidak cukup!');
         }
 
         // insert histori bank
@@ -44,6 +50,7 @@ class UserController extends Controller
             'location'          => 'Yogyakarta/Indonesia',
             'user_agent'        => $user_balance->user->name,
             'author'            => $user_balance->user->name,
+            'created_at'        => date('Y-m-d H:s:i'),
         );
 
         BalanceBankHistory::insert($ins_bank_history);
@@ -67,6 +74,7 @@ class UserController extends Controller
             'location'          => 'Yogyakarta/Indonesia',
             'user_agent'        => $user_balance->user->name,
             'author'            => $user_balance->user->name,
+            'created_at'        => date('Y-m-d H:s:i'),
         );
 
         UserBalanceHistory::insert($ins_user_history);

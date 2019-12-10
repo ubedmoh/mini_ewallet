@@ -5,6 +5,9 @@
 <li class="nav-item" {{ Route::is('transfer') ? 'active' : '' }}>
     <a class="nav-link" href="{{ route('transfer') }}">Transfer</a>
 </li>
+<li class="nav-item" {{ Route::is('mutasi') ? 'active' : '' }}>
+    <a class="nav-link" href="{{ route('mutasi') }}">Mutation</a>
+</li>
 {{-- <li class="nav-item" {{ Route::is('undangan') ? 'active' : '' }}>
     <a class="nav-link" href="{{ route('undangan') }}">Undangan</a>
 </li>

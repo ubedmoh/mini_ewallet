@@ -34,6 +34,16 @@ class BankController extends Controller
         $isi = $request->topup;
         $bank_balance = BalanceBank::first();
 
+        if($isi <= 0)
+        {
+            $return = array(
+                'status'    => 'error',
+                'message'      => 'Isikan data dengan benar',
+            );
+
+            return response()->json($return);
+        }
+
         // insert histori bank
         $ins_bank_history = array(
             'balance_bank_id'   => $bank_balance->id,
@@ -45,6 +55,7 @@ class BankController extends Controller
             'location'          => 'Yogyakarta/Indonesia',
             'user_agent'        => 'Bank',
             'author'            => 'Bank',
+            'created_at'        => date('Y-m-d H:s:i'),
         );
 
         BalanceBankHistory::insert($ins_bank_history);

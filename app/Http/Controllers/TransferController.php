@@ -30,6 +30,11 @@ class TransferController extends Controller
         $isi    = $request->isi;
 
         // mengurangi pengirim
+        if($isi <= 0)
+        {
+            return redirect()->back()->with('danger', 'Isikan data dengan benar');
+        }
+
         if($isi > $from->balance)
         {
             return redirect()->back()->with('danger', 'Uang tidak cukup!');
@@ -46,6 +51,7 @@ class TransferController extends Controller
             'location'          => 'Yogyakarta/Indonesia',
             'user_agent'        => $from->user->name,
             'author'            => $from->user->name,
+            'created_at'        => date('Y-m-d H:s:i'),
         );
 
         UserBalanceHistory::insert($ins_pengirim);
@@ -69,6 +75,7 @@ class TransferController extends Controller
             'location'          => 'Yogyakarta/Indonesia',
             'user_agent'        => $to->user->name,
             'author'            => $to->user->name,
+            'created_at'        => date('Y-m-d H:s:i'),
         );
 
         UserBalanceHistory::insert($ins_penerima);
